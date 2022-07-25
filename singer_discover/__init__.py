@@ -126,6 +126,25 @@ def main():
 
             catalog['streams'][i]['metadata'] = metadata.to_list(mdata)
 
+    for stream in catalog["streams"]:
+        for _md in stream["metadata"]:
+            if not _md["breadcrumb"]:
+                table_config = _md["metadata"]
+                valid_replication_key = table_config.get("valid-replication-keys", None)
+                forced_replication_method = table_config.get("forced-replication-method", None)
+
+                if forced_replication_method != None:
+                    if type(forced_replication_method) is dict:
+                        table_config["replication-method"] = forced_replication_method["replication-method"]
+                    elif type(forced_replication_method) is str:
+                        table_config["replication-method"] = forced_replication_method
+                elif valid_replication_key != None:
+                    # If there is a valid replication key than use incremental sync.
+                    table_config["replication-method"] = "INCREMENTAL"
+                    table_config["replication-key"] = valid_replication_key[0]
+                else:
+                    table_config["replication-method"] = "FULL_TABLE"
+
     logger.info("Catalog configuration saved.")
 
     with open(args.output, 'w') as f:

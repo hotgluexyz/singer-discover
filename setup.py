@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name="singer-discover-catalog",
-    version="0.1.0",
+    version="0.1.1",
     description="Edit a catalog from a tap's discovery mode",
     author="Chris Goddard",
     url="https://github.com/chrisgoddard",
