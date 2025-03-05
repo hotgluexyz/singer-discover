@@ -6,7 +6,7 @@ import json
 from singer import metadata, get_logger
 import tty
 
-from PyInquirer import prompt
+from PyInquirer.prompt import prompt
 
 logger = get_logger().getChild('singer-discover')
 

@@ -12,10 +12,7 @@ setup(
     py_modules=["singer_discover"],
     install_requires=[
         "singer-python>=5.4.1,<6.0",
-        "PyInquirer"
-    ],
-    dependency_links=[
-        "git+https://github.com/hotgluexyz/PyInquirer.git@master#egg=PyInquirer"
+        "PyInquirer @ git+https://github.com/hotgluexyz/PyInquirer.git@master"
     ],
     entry_points="""
     [console_scripts]
