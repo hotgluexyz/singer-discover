@@ -5,7 +5,7 @@ Simply command line utility to take a [Singer](https://www.singer.io/)-specifica
 ## Installation
 
 ```
-pip install https://github.com/chrisgoddard/singer-discover/archive/master.zip
+pip install https://github.com/hotgluexyz/singer-discover/archive/master.zip
 ```
 
 ## Use
