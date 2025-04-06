@@ -5,7 +5,7 @@ import argparse
 import json
 from singer import metadata, get_logger
 import tty
-
+from prompt_toolkit.styles import Style
 from PyInquirer.prompt import prompt
 
 logger = get_logger().getChild('singer-discover')
@@ -48,7 +48,12 @@ def main():
         ]
     }
 
-    selected_streams = prompt(select_streams)
+    style = Style.from_dict({
+        'selected': '#007700',
+        'question': 'bold',
+    })
+
+    selected_streams = prompt(select_streams, style=style)
 
     for i, stream in enumerate(catalog['streams']):
 
@@ -103,7 +108,7 @@ def main():
                 'choices': fields
             }
 
-            selections = prompt(stream_options)
+            selections = prompt(stream_options, style=style)
 
             selections = [
                 field_reference[n] for n in selections['fields']
